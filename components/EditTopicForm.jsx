@@ -13,13 +13,16 @@ export default function EditTopicForm({ id, title, description }) {
     e.preventDefault();
 
     try {
-      const res = await fetch(`${typeof window !== "undefined" ? window.location.origin : process.env.NEXT_PUBLIC_API_URL}:3000/api/topics/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({ newTitle, newDescription }),
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/topics/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({ newTitle, newDescription }),
+        }
+      );
 
       if (!res.ok) {
         throw new Error("Failed to update topic");
