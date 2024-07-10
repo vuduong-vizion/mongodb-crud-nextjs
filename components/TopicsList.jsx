@@ -12,9 +12,10 @@ const getTopics = async () => {
       throw new Error("Failed to fetch topics");
     }
 
-    return res.json();
+    return res.json() || [];
   } catch (error) {
     console.log("Error loading topics: ", error);
+    return { topics: [] };
   }
 };
 
